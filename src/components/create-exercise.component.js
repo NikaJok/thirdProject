@@ -4,17 +4,13 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 export default class CreateExercises extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      username: '',
-      description: '',
-      duration: 0,
-      date: new Date(),
-      users: []
-    };
-  }
+  state = {
+    username: '',
+    description: '',
+    duration: 0,
+    date: new Date(),
+    users: []
+  };
 
   componentDidMount() {
     axios.get('http://localhost:5000/users/').then(response => {
@@ -35,7 +31,7 @@ export default class CreateExercises extends Component {
     console.log(this.state);
   };
 
-  onSubmit(e) {
+  onSubmit = e => {
     e.preventDefault();
 
     const exercise = {
@@ -52,7 +48,7 @@ export default class CreateExercises extends Component {
       .then(res => console.log(res.data));
 
     window.location = '/';
-  }
+  };
   render() {
     const { username, description, duration, date, users } = this.state;
     return (
